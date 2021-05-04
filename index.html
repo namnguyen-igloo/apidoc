@@ -291,7 +291,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -302,9 +302,6 @@
       <img src="images/logo-19d99ffa.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -312,10 +309,10 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#configurations" class="toc-h1 toc-link" data-title="Configurations">Configurations</a>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            <a href="#configurations" class="toc-h1 toc-link" data-title="Configurations">Configurations</a>
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
@@ -324,16 +321,30 @@
             <a href="#user-authentication" class="toc-h1 toc-link" data-title="User Authentication">User Authentication</a>
           </li>
           <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#get-product-plans" class="toc-h1 toc-link" data-title="Get Product Plans">Get Product Plans</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#http-request" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#http-request-headers" class="toc-h2 toc-link" data-title="HTTP Request Headers">HTTP Request Headers</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#url-parameters" class="toc-h2 toc-link" data-title="URL Parameters">URL Parameters</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#create-a-quote-after-selecting-a-plan" class="toc-h1 toc-link" data-title="Create a quote after selecting a plan">Create a quote after selecting a plan</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-request" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+                  <li>
+                    <a href="#http-request-headers" class="toc-h2 toc-link" data-title="HTTP Request Headers">HTTP Request Headers</a>
+                  </li>
+                  <li>
+                    <a href="#http-body-parameters" class="toc-h2 toc-link" data-title="HTTP Body Parameters">HTTP Body Parameters</a>
                   </li>
               </ul>
           </li>
@@ -349,12 +360,16 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='configurations'>Configurations</h1>
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the iglooSDK Partner API! You can use our API to access igloo PSP API endpoints, which can get information on plans, policies in our database.</p>
+
+<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<h1 id='configurations'>Configurations</h1>
 <aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+Make sure to replace <code>APP_KEY</code>, <code>APP_SECRET</code>, <code>APP_ID</code> with yours. You can register a new iglooSDK API key at our [developer portal](http://developers.iglooinsure.com/). Or via email: <code>nam.nguyen@iglooinsure.com</code>
 </aside>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>The iglooSDK API uses the following keys:</p>
 
 <table><thead>
 <tr>
@@ -370,192 +385,336 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <td>AppKey</td>
 <td>Application Key</td>
 </tr>
+<tr>
+<td>AppSecret</td>
+<td>Application Secret</td>
+</tr>
 </tbody></table>
-<h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Host: api.dev.iglooinsure.com'</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+<span class="nt">--data-binary</span> <span class="s1">'{"app_key":&lt;APP_KEY&gt;,"app_secret":&lt;APP_SECRET&gt;,"app_id":&lt;APP_ID&gt;}'</span> <span class="se">\</span>
+<span class="nt">--compressed</span> <span class="s1">'https://api.dev.iglooinsure.com/v1/app-auth/apps/api-keys'</span>
+</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
 </code></pre></div>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<p>Make sure to replace APP_KEY, APP_SECRET, APP_ID with yours. You can register a new iglooSDK API key at our <a href="http://developers.iglooinsure.com/">developer portal</a>. Or via email: nam.nguyen@iglooinsure.com</p>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='user-authentication'>User Authentication</h1><h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
-</code></pre></div>
-<blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c2c013bdc8b...08534b1e02"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
+<blockquote>
+<p>This token will be added to the request headers for future request. [x-access-token: c2c013bdc8b...08534b1e02]</p>
+</blockquote>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<p>igloo expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+
+<p><code>x-access-token: c2c013bdc8b...08534b1e02</code></p>
+
+<aside class="notice">
+You must replace <code>APP_KEY</code>, <code>APP_SECRET</code>, <code>APP_ID</code> with your personal API keys.
 </aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<h1 id='user-authentication'>User Authentication</h1>
+<blockquote>
+<p>To authorize user, use this code:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Host: api.qa.iglooinsure.com'</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s1">'x-access-token: c2c013bdc8b...08534b1e02'</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s1">'User-Agent: demo/48 CFNetwork/1220.1 Darwin/20.3.0'</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s1">'Accept-Language: en-us'</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s1">'x-app-id: &lt;APP_ID&gt;'</span> <span class="se">\</span>
+<span class="nt">--data-binary</span> <span class="s1">'{"user_id":"namsg_001"}'</span> <span class="se">\</span>
+<span class="nt">--compressed</span> <span class="s1">'https://api.qa.iglooinsure.com/v1/psp/auth?random=1448&amp;sign=&lt;dynamic_signature&gt;&amp;timestamp=1620114166'</span>
+</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="nl">"jwt_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzUxMiIsInR5cC...ifLn5g"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves a specific kitten.</p>
+<blockquote>
+<p>This token will be added to the request headers for future request. [x-axinan-authorization: eyJhbGciOiJIUzUxMiIsInR5cC...ifLn5g]</p>
+</blockquote>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<p>igloo expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+
+<p><code>x-axinan-authorization: eyJhbGciOiJIUzUxMiIsInR5cC...ifLn5g</code></p>
+
+<aside class="notice">
+You must replace <code>APP_ID</code> with your personal API keys.
+</aside>
+<h1 id='get-product-plans'>Get Product Plans</h1>
+<blockquote>
+<p>Make sure to replace <code>&lt;app_token&gt;</code>, <code>&lt;user_token&gt;</code>, <code>&lt;app_id&gt;</code> with your keys.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code> curl <span class="nt">-H</span> <span class="s1">'Host: api.dev.iglooinsure.com'</span> 
+ <span class="nt">-H</span> <span class="s1">'x-access-token: &lt;app_token&gt;'</span> 
+ <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> 
+ <span class="nt">-H</span> <span class="s1">'x-axinan-authorization: &lt;user_token&gt;'</span> 
+ <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> 
+ <span class="nt">-H</span> <span class="s1">'Accept-Language: en-us'</span> 
+ <span class="nt">-H</span> <span class="s1">'User-Agent: demo/48 CFNetwork/1220.1 Darwin/20.3.0'</span> 
+ <span class="nt">-H</span> <span class="s1">'x-app-id: &lt;app_id&gt;'</span> 
+ <span class="nt">--compressed</span> <span class="s1">'https://api.qa.iglooinsure.com/v1/psp/customer/plans?brand=Apple&amp;model=iPhone13,3&amp;random=6247&amp;sign=&lt;dynamic_signature&gt;&amp;timestamp=1620114169'</span> 
+</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"supported"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"plan_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nl">"premium_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"monthly"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"plans"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="nl">"coverages"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="nl">"min_excess"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"repairable"</span><span class="w">
+            </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"min_excess"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"repairable"</span><span class="w">
+            </span><span class="p">}],</span><span class="w">
+            </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMK"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"max_claim_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Plan 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"policy_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TypePSP"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"premium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"830"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"premium_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"monthly"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Telenor-AYA-Sompo-MSP-Nil-Excess"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"coverages"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="nl">"min_excess"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"repairable"</span><span class="w">
+            </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"min_excess"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unrepairable"</span><span class="w">
+            </span><span class="p">}],</span><span class="w">
+            </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMK"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"max_claim_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Plan 2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"policy_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TypePSP"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"premium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1330"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"premium_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"monthly"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Telenor-AYA-Sompo-MSP-Nil-Excess"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"premium_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yearly"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+        </span><span class="nl">"plans"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="nl">"coverages"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="nl">"min_excess"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"repairable"</span><span class="w">
+            </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"min_excess"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unrepairable"</span><span class="w">
+            </span><span class="p">}],</span><span class="w">
+            </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMK"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"max_claim_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Plan 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"policy_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TypePSP"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"premium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9960"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"premium_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yearly"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Telenor-AYA-Sompo-MSP-Nil-Excess"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"coverages"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="nl">"min_excess"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"repairable"</span><span class="w">
+            </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"min_excess"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unrepairable"</span><span class="w">
+            </span><span class="p">}],</span><span class="w">
+            </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMK"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"max_claim_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Plan 2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"policy_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TypePSP"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"premium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15960"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"premium_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yearly"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Telenor-AYA-Sompo-MSP-Nil-Excess"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"coverages"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="nl">"min_excess"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"repairable"</span><span class="w">
+            </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"min_excess"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unrepairable"</span><span class="w">
+            </span><span class="p">}],</span><span class="w">
+            </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MMK"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"max_claim_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Plan 3"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"policy_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TypePSP"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"premium"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20040"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"premium_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yearly"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Telenor-AYA-Sompo-MSP-Nil-Excess"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrieves all supported plans for the current device.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /v1/psp/customer/plans</code></p>
+<h3 id='http-request-headers'>HTTP Request Headers</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>x-access-token</td>
+<td>string</td>
+<td>Client Authentication token</td>
+</tr>
+<tr>
+<td>x-axinan-authorization</td>
+<td>string</td>
+<td>User Authentication token</td>
+</tr>
+</tbody></table>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>brand</td>
+<td>string</td>
+<td>Phone&#39;s brand, like Apple, Samsung, Huawei</td>
+</tr>
+<tr>
+<td>model</td>
+<td>string</td>
+<td>Phone&#39;s model, like Galaxy S20, iPhone 11 Pro</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<aside class="info">
+Notice — The plans are different for every device type, base on Brand and Model
+</aside>
+<h1 id='create-a-quote-after-selecting-a-plan'>Create a quote after selecting a plan</h1><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Host: api.dev.iglooinsure.com'</span> <span class="nt">-H</span> <span class="s1">'x-access-token: &lt;app_token&gt;'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'User-Agent: demo/48 CFNetwork/1220.1 Darwin/20.3.0'</span> <span class="nt">-H</span> <span class="s1">'x-axinan-authorization: &lt;user_token&gt;'</span> <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="nt">-H</span> <span class="s1">'Accept-Language: en-us'</span> <span class="nt">-H</span> <span class="s1">'x-app-id: telenor-b683'</span> <span class="nt">--data-binary</span> <span class="s1">'{"plan_id":31,"insured_person":{"nrc_or_passport":"c12312","customer_name":"nam Nguyen","phone_prefix_number":"95","email":"email@domain.com","phone_number":"987651"},"insured_object":{"uuid":"&lt;igloo_device_id&gt;","model":"iPhone13,3","brand":"Apple","imei_number":""},"product_key":"Telenor-AYA-Sompo-MSP-Nil-Excess"}'</span> <span class="nt">--compressed</span> <span class="s1">'https://api.qa.iglooinsure.com/v1/psp/customer/quotes?random=8815&amp;sign=&lt;dynamic_signature&gt;&amp;timestamp=1620115317'</span>
+</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+    </span><span class="nl">"policy_display_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PSP20210500003"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<p>This endpoint is for creating a quote on igloo server, as a preparation for Activation.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /v1/psp/customer/quotes</code></p>
+<h3 id='http-request-headers'>HTTP Request Headers</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>x-access-token</td>
+<td>string</td>
+<td>Client Authentication token</td>
+</tr>
+<tr>
+<td>x-axinan-authorization</td>
+<td>string</td>
+<td>User Authentication token</td>
 </tr>
 </tbody></table>
+<h3 id='http-body-parameters'>HTTP Body Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>plan_id</td>
+<td>number</td>
+<td>true</td>
+<td>The selected plan&#39;s id</td>
+</tr>
+<tr>
+<td>insured_person</td>
+<td>object</td>
+<td>true</td>
+<td>Customer&#39;s information (*)</td>
+</tr>
+<tr>
+<td>insured_object</td>
+<td>object</td>
+<td>true</td>
+<td>Device&#39;s information (**)</td>
+</tr>
+<tr>
+<td>product_key</td>
+<td>string</td>
+<td>true</td>
+<td>The selected plan&#39;s product-key</td>
+</tr>
+</tbody></table>
+
+<p>(*) insured_person is an object with structure:
+<code>json
+  { 
+    &quot;nrc_or_passport&quot;: string,
+    &quot;customer_name&quot;: string,
+    &quot;phone_prefix_number&quot;: string,
+    &quot;email&quot;: string,
+    &quot;phone_number&quot;: string
+  }
+</code></p>
+
+<p>(*) insured_object is an object with structure:
+<code>json
+  { 
+    &quot;uuid&quot;: string,
+        &quot;model&quot;: string,
+        &quot;brand&quot;: string,
+        &quot;imei_number&quot;: string
+  }
+</code></p>
+
+<aside class="info">
+Notice — `uuid` or `imei_number` is managed by iglooSDK, please retreive the id from `iglooSDK.deviceId()`
+</aside>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+This is the general errors table for all APIs.
 </aside>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>The iglooSDK API uses the following error codes:</p>
 
 <table><thead>
 <tr>
@@ -585,9 +744,6 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
