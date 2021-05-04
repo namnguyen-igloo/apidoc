@@ -18,8 +18,11 @@ includes:
   - user_authentication
   - plans
   - quotes
+  - webhook
   - errors
   - sequence_diagrams
+  - clientsdk
+  - changelog
   
 
 search: true
