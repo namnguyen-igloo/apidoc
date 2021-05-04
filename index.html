@@ -291,7 +291,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -301,7 +301,10 @@
     <div class="toc-wrapper">
       <img src="images/logo-19d99ffa.png" class="logo" alt="" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="shell">cURL</a>
+              <a href="#" data-language-name="ruby">Ruby</a>
+              <a href="#" data-language-name="python">Python</a>
+              <a href="#" data-language-name="javascript">NodeJS</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -350,6 +353,38 @@
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+          <li>
+            <a href="#sequence-diagrams" class="toc-h1 toc-link" data-title="Sequence Diagrams">Sequence Diagrams</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-plans" class="toc-h2 toc-link" data-title="Get Plans">Get Plans</a>
+                  </li>
+                  <li>
+                    <a href="#select-plan-and-get-a-quote" class="toc-h2 toc-link" data-title="Select plan and get a Quote">Select plan and get a Quote</a>
+                  </li>
+                  <li>
+                    <a href="#purchase-a-quote" class="toc-h2 toc-link" data-title="Purchase a Quote">Purchase a Quote</a>
+                  </li>
+                  <li>
+                    <a href="#activate-a-quote" class="toc-h2 toc-link" data-title="Activate a Quote">Activate a Quote</a>
+                  </li>
+                  <li>
+                    <a href="#view-policy-details" class="toc-h2 toc-link" data-title="View Policy Details">View Policy Details</a>
+                  </li>
+                  <li>
+                    <a href="#renew" class="toc-h2 toc-link" data-title="Renew">Renew</a>
+                  </li>
+                  <li>
+                    <a href="#cancel" class="toc-h2 toc-link" data-title="Cancel">Cancel</a>
+                  </li>
+                  <li>
+                    <a href="#claim" class="toc-h2 toc-link" data-title="Claim">Claim</a>
+                  </li>
+                  <li>
+                    <a href="#repurchase" class="toc-h2 toc-link" data-title="Repurchase">Repurchase</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -435,7 +470,7 @@ You must replace <code>APP_KEY</code>, <code>APP_SECRET</code>, <code>APP_ID</co
 <span class="nt">-H</span> <span class="s1">'Accept-Language: en-us'</span> <span class="se">\</span>
 <span class="nt">-H</span> <span class="s1">'x-app-id: &lt;APP_ID&gt;'</span> <span class="se">\</span>
 <span class="nt">--data-binary</span> <span class="s1">'{"user_id":"namsg_001"}'</span> <span class="se">\</span>
-<span class="nt">--compressed</span> <span class="s1">'https://api.qa.iglooinsure.com/v1/psp/auth?random=1448&amp;sign=&lt;dynamic_signature&gt;&amp;timestamp=1620114166'</span>
+<span class="nt">--compressed</span> <span class="s1">'https://api.dev.iglooinsure.com/v1/psp/auth?random=1448&amp;sign=&lt;dynamic_signature&gt;&amp;timestamp=1620114166'</span>
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
@@ -463,14 +498,13 @@ You must replace <code>APP_ID</code> with your personal API keys.
 <p>Make sure to replace <code>&lt;app_token&gt;</code>, <code>&lt;user_token&gt;</code>, <code>&lt;app_id&gt;</code> with your keys.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code> curl <span class="nt">-H</span> <span class="s1">'Host: api.dev.iglooinsure.com'</span> 
- <span class="nt">-H</span> <span class="s1">'x-access-token: &lt;app_token&gt;'</span> 
+ <span class="nt">-H</span> <span class="s1">'x-access-token: c2c013bdc8b...08534b1e02'</span> 
  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> 
  <span class="nt">-H</span> <span class="s1">'x-axinan-authorization: &lt;user_token&gt;'</span> 
  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> 
  <span class="nt">-H</span> <span class="s1">'Accept-Language: en-us'</span> 
- <span class="nt">-H</span> <span class="s1">'User-Agent: demo/48 CFNetwork/1220.1 Darwin/20.3.0'</span> 
- <span class="nt">-H</span> <span class="s1">'x-app-id: &lt;app_id&gt;'</span> 
- <span class="nt">--compressed</span> <span class="s1">'https://api.qa.iglooinsure.com/v1/psp/customer/plans?brand=Apple&amp;model=iPhone13,3&amp;random=6247&amp;sign=&lt;dynamic_signature&gt;&amp;timestamp=1620114169'</span> 
+ <span class="nt">-H</span> <span class="s1">'x-app-id: &lt;APP_ID&gt;'</span> 
+ <span class="nt">--compressed</span> <span class="s1">'https://api.dev.iglooinsure.com/v1/psp/customer/plans?brand=Apple&amp;model=iPhone13,3&amp;random=6247&amp;sign=&lt;dynamic_signature&gt;&amp;timestamp=1620114169'</span>    
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
@@ -616,7 +650,15 @@ You must replace <code>APP_ID</code> with your personal API keys.
 <aside class="info">
 Notice — The plans are different for every device type, base on Brand and Model
 </aside>
-<h1 id='create-a-quote-after-selecting-a-plan'>Create a quote after selecting a plan</h1><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Host: api.dev.iglooinsure.com'</span> <span class="nt">-H</span> <span class="s1">'x-access-token: &lt;app_token&gt;'</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-H</span> <span class="s1">'User-Agent: demo/48 CFNetwork/1220.1 Darwin/20.3.0'</span> <span class="nt">-H</span> <span class="s1">'x-axinan-authorization: &lt;user_token&gt;'</span> <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="nt">-H</span> <span class="s1">'Accept-Language: en-us'</span> <span class="nt">-H</span> <span class="s1">'x-app-id: telenor-b683'</span> <span class="nt">--data-binary</span> <span class="s1">'{"plan_id":31,"insured_person":{"nrc_or_passport":"c12312","customer_name":"nam Nguyen","phone_prefix_number":"95","email":"email@domain.com","phone_number":"987651"},"insured_object":{"uuid":"&lt;igloo_device_id&gt;","model":"iPhone13,3","brand":"Apple","imei_number":""},"product_key":"Telenor-AYA-Sompo-MSP-Nil-Excess"}'</span> <span class="nt">--compressed</span> <span class="s1">'https://api.qa.iglooinsure.com/v1/psp/customer/quotes?random=8815&amp;sign=&lt;dynamic_signature&gt;&amp;timestamp=1620115317'</span>
+<h1 id='create-a-quote-after-selecting-a-plan'>Create a quote after selecting a plan</h1><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s1">'Host: api.dev.iglooinsure.com'</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s1">'x-access-token: c2c013bdc8b...08534b1e02'</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s1">'x-axinan-authorization: eyJhbGciOiJIUzUxMiIsInR5cC...ifLn5g'</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s1">'Accept-Language: en-us'</span> <span class="se">\</span>
+<span class="nt">-H</span> <span class="s1">'x-app-id: &lt;APP_ID&gt;'</span> <span class="se">\</span>
+<span class="nt">--data-binary</span> <span class="s1">'{"plan_id":31,"insured_person":{"nrc_or_passport":"c12312","customer_name":"nam Nguyen","phone_prefix_number":"95","email":"email@domain.com","phone_number":"987651"},"insured_object":{"uuid":"&lt;igloo_device_id&gt;","model":"iPhone13,3","brand":"Apple","imei_number":""},"product_key":"Telenor-AYA-Sompo-MSP-Nil-Excess"}'</span> <span class="se">\</span>
+<span class="nt">--compressed</span> <span class="s1">'https://api.dev.iglooinsure.com/v1/psp/customer/quotes?random=8815&amp;sign=&lt;dynamic_signature&gt;&amp;timestamp=1620115317'</span>
 </code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
@@ -739,11 +781,21 @@ This is the general errors table for all APIs.
 <td>Unknown Error</td>
 </tr>
 </tbody></table>
-
+<h1 id='sequence-diagrams'>Sequence Diagrams</h1><h2 id='get-plans'>Get Plans</h2><h2 id='select-plan-and-get-a-quote'>Select plan and get a Quote</h2><h2 id='purchase-a-quote'>Purchase a Quote</h2><h2 id='activate-a-quote'>Activate a Quote</h2><h2 id='view-policy-details'>View Policy Details</h2><h2 id='renew'>Renew</h2><h2 id='cancel'>Cancel</h2><h2 id='claim'>Claim</h2>
+<ol>
+<li>Claim at home for Cashback</li>
+<li>Claim at Repair Shop for Cashback</li>
+<li>Claim at Repair Shop for Repair/Replace</li>
+<li>Claim with Web Claim Portal (Phone is dead)</li>
+</ol>
+<h2 id='repurchase'>Repurchase</h2>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="shell">cURL</a>
+                <a href="#" data-language-name="ruby">Ruby</a>
+                <a href="#" data-language-name="python">Python</a>
+                <a href="#" data-language-name="javascript">NodeJS</a>
           </div>
       </div>
     </div>
