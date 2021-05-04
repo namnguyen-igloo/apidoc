@@ -1,7 +1,15 @@
 # Create a quote after selecting a plan
 
 ```shell
-curl -H 'Host: api.dev.iglooinsure.com' -H 'x-access-token: <app_token>' -H 'Content-Type: application/json' -H 'User-Agent: demo/48 CFNetwork/1220.1 Darwin/20.3.0' -H 'x-axinan-authorization: <user_token>' -H 'Accept: application/json' -H 'Accept-Language: en-us' -H 'x-app-id: telenor-b683' --data-binary '{"plan_id":31,"insured_person":{"nrc_or_passport":"c12312","customer_name":"nam Nguyen","phone_prefix_number":"95","email":"email@domain.com","phone_number":"987651"},"insured_object":{"uuid":"<igloo_device_id>","model":"iPhone13,3","brand":"Apple","imei_number":""},"product_key":"Telenor-AYA-Sompo-MSP-Nil-Excess"}' --compressed 'https://api.qa.iglooinsure.com/v1/psp/customer/quotes?random=8815&sign=<dynamic_signature>&timestamp=1620115317'
+curl -H 'Host: api.dev.iglooinsure.com' \
+-H 'x-access-token: c2c013bdc8b...08534b1e02' \
+-H 'Content-Type: application/json' \
+-H 'x-axinan-authorization: eyJhbGciOiJIUzUxMiIsInR5cC...ifLn5g' \
+-H 'Accept: application/json' \
+-H 'Accept-Language: en-us' \
+-H 'x-app-id: <APP_ID>' \
+--data-binary '{"plan_id":31,"insured_person":{"nrc_or_passport":"c12312","customer_name":"nam Nguyen","phone_prefix_number":"95","email":"email@domain.com","phone_number":"987651"},"insured_object":{"uuid":"<igloo_device_id>","model":"iPhone13,3","brand":"Apple","imei_number":""},"product_key":"Telenor-AYA-Sompo-MSP-Nil-Excess"}' \
+--compressed 'https://api.dev.iglooinsure.com/v1/psp/customer/quotes?random=8815&sign=<dynamic_signature>&timestamp=1620115317'
 ```
 
 ```ruby

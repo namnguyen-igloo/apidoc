@@ -4,14 +4,13 @@
 
 ```shell
  curl -H 'Host: api.dev.iglooinsure.com' 
- -H 'x-access-token: <app_token>' 
+ -H 'x-access-token: c2c013bdc8b...08534b1e02' 
  -H 'Content-Type: application/json' 
  -H 'x-axinan-authorization: <user_token>' 
  -H 'Accept: application/json' 
  -H 'Accept-Language: en-us' 
- -H 'User-Agent: demo/48 CFNetwork/1220.1 Darwin/20.3.0' 
- -H 'x-app-id: <app_id>' 
- --compressed 'https://api.qa.iglooinsure.com/v1/psp/customer/plans?brand=Apple&model=iPhone13,3&random=6247&sign=<dynamic_signature>&timestamp=1620114169'	
+ -H 'x-app-id: <APP_ID>' 
+ --compressed 'https://api.dev.iglooinsure.com/v1/psp/customer/plans?brand=Apple&model=iPhone13,3&random=6247&sign=<dynamic_signature>&timestamp=1620114169'	
 ```
 
 ```ruby

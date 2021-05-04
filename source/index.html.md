@@ -2,7 +2,10 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
+  - shell: cURL
+  - ruby: Ruby
+  - python: Python
+  - javascript: NodeJS
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -16,6 +19,7 @@ includes:
   - plans
   - quotes
   - errors
+  - sequence_diagrams
   
 
 search: true

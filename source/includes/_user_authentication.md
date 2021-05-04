@@ -11,7 +11,7 @@ curl -H 'Host: api.qa.iglooinsure.com' \
 -H 'Accept-Language: en-us' \
 -H 'x-app-id: <APP_ID>' \
 --data-binary '{"user_id":"namsg_001"}' \
---compressed 'https://api.qa.iglooinsure.com/v1/psp/auth?random=1448&sign=<dynamic_signature>&timestamp=1620114166'
+--compressed 'https://api.dev.iglooinsure.com/v1/psp/auth?random=1448&sign=<dynamic_signature>&timestamp=1620114166'
 ```
 
 ```ruby
